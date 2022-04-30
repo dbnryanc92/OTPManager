@@ -1,56 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant">
   <head>
-    <title>OTP管理大師</title>
-    <meta charset="utf-8" />
-    <meta name="description" content="OTP管理大師，本地備份還原安全方便">
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name=”apple-mobile-web-app-capable” content=”yes”>
-    <link rel='apple-touch-icon' href='/img/apple-touch-icon.png'/>
-    <link rel="icon" href="/img/favicon.ico">
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="css/style.css" />
+    <title>OTP管理大師</title>
+    <meta name="description" content="OTP管理大師，本地備份還原安全方便" />
+    <link rel="icon" href="/img/favicon.png" />
+    <link
+      rel="alternate icon"
+      href="/img/favicon.ico"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/img/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <link rel="mask-icon" href="/img/favicon.png" color="#FFFFFF" />
+    <meta name="theme-color" content="#FCB43A" />
   </head>
+
   <body>
-    <div id="header">
-      OTP管理大師
-      <!--button id="showAbout" onclick="toggleAbout()">顯示說明</button-->
-      <button id="showOptions" onclick="toggleOptions()">顯示選項</button>
-      <div id="updateTimer">-</div>
-    </div>
-    <div id="options">
-      <div class="option">
-        <input type="checkbox" id="showSecret" name="showSecret" onchange="toggleShowSecret()">
-        <label for="showSecret" class="optionHeader">顯示金鑰</label>
-      </div>
-      <div class="option">
-        <input type="checkbox" id="showModify" name="showModify" onchange="toggleShowModify()">
-        <label for="showModify" class="optionHeader">顯示編輯介面(增加/刪除OTP)</label>
-      </div>
-      <div class="option">
-        <div class="optionHeader"><strong>備份</strong>（匯出OTP為JSON檔）</div>
-        <button onclick="exportOTP()">匯出OTP</button>
-      </div>
-      <div class="option">
-        <div class="optionHeader"><strong>還原</strong>（從JSON檔匯入OTP）</div>
-        <input type="file" accept=".json" id="importOTPFile" onchange="importOTP()" />
-        <div class="optionNote">注意：將取代目前所有已輸入之OTP項目</div>
-      </div>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th id="modifyCol">編輯</th>
-          <th>標籤</th>
-          <th class="otpCol">OTP</th>
-          <th class="otpCol">下一組</th>
-          <th id="secretCol">金鑰</th>
-        </tr>
-      </thead>
-      <tbody id="otpDisplayBody"></tbody>
-    </table>
-    
-    <script src="js/otp.js"></script>
-    <script src="js/script.js"></script>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
