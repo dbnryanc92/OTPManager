@@ -187,7 +187,6 @@ let consecutiveEscPressed = 0;
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     if (store.showSettings) {
-      e.preventDefault();
       e.stopImmediatePropagation();
       return;
     }

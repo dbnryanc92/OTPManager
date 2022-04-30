@@ -66,6 +66,7 @@
             hide-details
             clearable
             class="profileNameInput mr-2 mt-2"
+            @keypress.enter="addProfile()"
           ></v-text-field>
           <v-text-field
             v-model="addProfileSecret"
@@ -76,6 +77,7 @@
             hide-details
             clearable
             class="profileSecretInput mr-2 mt-2"
+            @keypress.enter="addProfile()"
           ></v-text-field>
           <v-list-item-action class="mt-2">
             <v-btn
@@ -126,6 +128,7 @@
             hide-details
             filled=""
             class="profileNameInput mr-2 mt-2"
+            @keypress.enter="editProfileConfirm"
           ></v-text-field>
           <v-text-field
             v-model="editProfileSecret"
@@ -135,6 +138,7 @@
             :variant="display.xs.value ? 'underlined' : 'outlined'"
             hide-details
             class="profileSecretInput mr-2 mt-2"
+            @keypress.enter="editProfileConfirm"
           ></v-text-field>
           <v-list-item-action>
             <v-btn
