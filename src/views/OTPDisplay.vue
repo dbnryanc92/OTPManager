@@ -185,24 +185,25 @@ const showFilterBar = ref(false);
 const filterBarInput = ref("");
 let consecutiveEscPressed = 0;
 window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    if (store.showSettings) {
+  // Not to trigger filterbar if settings is open
+  if (store.showSettings) {
+    if (e.key === "Escape") {
       e.stopImmediatePropagation();
-      return;
     }
+    return;
+  }
 
+  // Handle Escape
+  if (e.key === "Escape") {
     // Hide filter bar when 3 ESC pressed
     consecutiveEscPressed++;
     if (consecutiveEscPressed >= 3) {
       resetFilterBar();
       return;
     }
-  } else {
-    consecutiveEscPressed = 0;
+    return;
   }
-
-  // Not to trigger filterbar if settings is open
-  if (store.showSettings) return;
+  consecutiveEscPressed = 0;
 
   // Handle F3 or Ctrl+F
   if (e.key === "F3" || (e.ctrlKey && e.key === "f")) {
