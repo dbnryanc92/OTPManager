@@ -20,7 +20,7 @@
             <v-icon size="24" color="primary">mdi-close</v-icon>
           </v-btn>
         </v-tabs>
-        <v-window v-model="tab" class="overflow-y-auto">
+        <v-window v-model="tab" class="overflow-y-auto" id="settingsWindow">
           <v-window-item value="SettingsProfile">
             <SettingsProfile />
           </v-window-item>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 import { useStore } from "../stores/store";
 import SettingsProfile from "./SettingsProfile.vue";
@@ -48,4 +48,10 @@ const display = useDisplay();
 const store = useStore();
 
 const tab = ref("SettingsProfile");
+
+watch(tab, (curTab, prevTab) => {
+  const window = document.getElementById("settingsWindow");
+  if (!window) return;
+  window.scrollTop = 0;
+});
 </script>
