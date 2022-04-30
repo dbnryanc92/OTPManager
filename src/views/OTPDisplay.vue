@@ -19,7 +19,6 @@
     <v-text-field
       v-model="filterBarInput"
       id="filterBarInputId"
-      autofocus
       hide-details
       single-line
       variant="plain"
@@ -69,7 +68,15 @@
           class="text-center"
           @click="copyToClipboard(getOtp(item.secret, curTimegroup))"
         >
-          <Transition name="shift">
+          <Transition
+            :name="
+              display.width.value >= 420
+                ? 'shift'
+                : display.width.value >= 340
+                ? 'shift-drop'
+                : 'fade'
+            "
+          >
             <div v-if="showOtp" class="otpCur">
               {{ getOtp(item.secret, curTimegroup) }}
             </div>
@@ -80,7 +87,7 @@
           v-if="display.width.value >= 340"
           @click="copyToClipboard(getOtp(item.secret, curTimegroup + 1))"
         >
-          <Transition name="shift">
+          <Transition :name="!display.xs.value ? 'shift' : 'add-shift'">
             <div v-if="showOtp" class="otpNext">
               {{ getOtp(item.secret, curTimegroup + 1) }}
             </div>
@@ -175,8 +182,14 @@ const showFilterBar = ref(false);
 const filterBarInput = ref("");
 let consecutiveEscPressed = 0;
 window.addEventListener("keydown", function (e) {
-  // Hide filter bar when 3 ESC pressed
   if (e.key === "Escape") {
+    if (store.showSettings) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return;
+    }
+
+    // Hide filter bar when 3 ESC pressed
     consecutiveEscPressed++;
     if (consecutiveEscPressed >= 3) {
       resetFilterBar();
@@ -259,35 +272,34 @@ const updateBnsOnlineStatus = async () => {
 }
 
 // OTP update animation
+.fade-enter-active,
+.fade-leave-active,
 .add-shift-leave-active,
 .shift-enter-active,
 .shift-leave-active,
 .shift-drop-enter-active,
 .shift-drop-leave-active {
   transition: all 0.3s ease-out;
-  //transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .add-shift-enter-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.7s ease-out;
 }
 
 .shift-enter-from,
 .shift-drop-enter-from {
-  transform: translateX(20px);
+  transform: translateX(60px);
   opacity: 0;
 }
 .add-shift-leave-to,
 .shift-leave-to {
-  transform: translateX(-20px);
+  transform: translateX(-60px);
   opacity: 0;
 }
-.add-shift-enter-from {
-  //transform: translateY(-30px);
-  opacity: 0;
-}
+.fade-enter-from,
+.fade-leave-to,
+.add-shift-enter-from,
 .shift-drop-leave-to {
-  //transform: translateY(20px);
   opacity: 0;
 }
 </style>

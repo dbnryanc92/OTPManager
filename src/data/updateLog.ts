@@ -8,6 +8,14 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.0.1",
+    date: "20220429",
+    details: [
+      "修正：修正按Esc鍵會關閉設定頁面的錯誤",
+      "修正：修正特定寬度下，OTP更新動畫會導致瀏覽器滾動條異常出現情況",
+    ],
+  },
+  {
     v: "2.0",
     date: "20220429",
     details: [
