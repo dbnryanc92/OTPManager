@@ -7,7 +7,8 @@ import * as fs from "fs";
 import * as path from "path";
 
 const VitePWAConfig = {
-  registerType: "prompt" as "prompt",
+  registerType: "autoUpdate" as "prompt" | "autoUpdate",
+  filename: "service-worker.js",
   includeAssets: [
     "/assets/*",
     "/img/favicon.png",
