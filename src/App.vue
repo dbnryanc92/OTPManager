@@ -15,6 +15,7 @@
         position="absolute"
         bottom="16"
         right="16"
+        :size="display.xs.value ? 'small' : undefined"
         @click="store.showSettings = !store.showSettings"
       >
       </v-btn>
@@ -31,14 +32,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import OTPDisplay from "@/views/OTPDisplay.vue";
 import OTPDisplayLegacy from "@/views/OTPDisplayLegacy.vue";
 import Settings from "@/views/Settings.vue";
 import RemoveConfirmation from "@/components/RemoveConfirmation.vue";
 import SWUpdate from "./components/SWUpdate.vue";
 
+import { useDisplay } from "vuetify";
 import { useStore } from "./stores/store";
+
+const display = useDisplay();
 const store = useStore();
 store.init();
 </script>

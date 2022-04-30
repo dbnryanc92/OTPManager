@@ -105,6 +105,9 @@
           </Transition>
         </td>
       </tr>
+
+      <!-- Empty row to avoid settings FAB blocking any OTPs -->
+      <tr style="height: 56px"></tr>
     </tbody>
   </v-table>
 
