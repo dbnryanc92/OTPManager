@@ -20,14 +20,18 @@
             <v-icon size="24" color="primary">mdi-close</v-icon>
           </v-btn>
         </v-tabs>
-        <v-window v-model="tab" class="overflow-y-auto" id="settingsWindow">
-          <v-window-item value="SettingsProfile">
+        <v-window
+          v-model="tab"
+          class="overflow-y-auto h-100"
+          id="settingsWindow"
+        >
+          <v-window-item value="SettingsProfile" class="h-100">
             <SettingsProfile />
           </v-window-item>
-          <v-window-item value="SettingsDisplay">
+          <v-window-item value="SettingsDisplay" class="h-100">
             <SettingsDisplay />
           </v-window-item>
-          <v-window-item value="SettingsAbout">
+          <v-window-item value="SettingsAbout" class="h-100">
             <SettingsAbout />
           </v-window-item>
         </v-window>
