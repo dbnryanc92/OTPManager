@@ -13,7 +13,7 @@
       >
         <v-tabs fixed-tabs v-model="tab">
           <v-tab value="SettingsProfile">帳號</v-tab>
-          <v-tab value="SettingsDisplay">顯示</v-tab>
+          <v-tab value="SettingsPreference">偏好</v-tab>
           <v-tab value="SettingsAbout">關於</v-tab>
           <v-spacer />
           <v-btn height="48" flat @click="store.showSettings = false">
@@ -28,8 +28,8 @@
           <v-window-item value="SettingsProfile" class="h-100">
             <SettingsProfile />
           </v-window-item>
-          <v-window-item value="SettingsDisplay" class="h-100">
-            <SettingsDisplay />
+          <v-window-item value="SettingsPreference" class="h-100">
+            <SettingsPreference />
           </v-window-item>
           <v-window-item value="SettingsAbout" class="h-100">
             <SettingsAbout />
@@ -45,7 +45,7 @@ import { ref, watch } from "vue";
 import { useDisplay } from "vuetify";
 import { useStore } from "../stores/store";
 import SettingsProfile from "./SettingsProfile.vue";
-import SettingsDisplay from "./SettingsDisplay.vue";
+import SettingsPreference from "./SettingsPreference.vue";
 import SettingsAbout from "./SettingsAbout.vue";
 
 const display = useDisplay();

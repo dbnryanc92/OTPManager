@@ -1,13 +1,13 @@
 <template>
   <v-card-title>
     <div>
-      <div class="text-h5">顯示設定</div>
+      <div class="text-h5">偏好設定</div>
       <div class="text-caption">設定將自動儲存，但只套用到這個瀏覽器</div>
     </div>
   </v-card-title>
   <v-card-content class="pa-0">
     <v-list density="comfortable">
-      <v-list-subheader>介面</v-list-subheader>
+      <v-list-subheader>顯示</v-list-subheader>
 
       <!-- 黑夜模式 -->
       <v-list-item lines="two">
