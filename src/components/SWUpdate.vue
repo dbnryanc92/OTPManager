@@ -10,7 +10,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-cloud-download-outline</v-icon>
+      <v-icon>mdi-cloud-download-outline</v-icon>
       <div class="flex-grow-1">偵測到新版本，正在更新...</div>
     </div>
   </v-snackbar>
@@ -26,7 +26,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-check-outline</v-icon>
+      <v-icon>mdi-check-outline</v-icon>
       <div class="flex-grow-1">已準備好最新版本 v{{ latestVersion }}</div>
     </div>
   </v-snackbar>

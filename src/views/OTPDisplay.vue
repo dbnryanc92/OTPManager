@@ -144,7 +144,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-content-copy</v-icon>
+      <v-icon>mdi-content-copy</v-icon>
       <div class="flex-grow-1">已複製到剪貼簿：{{ copiedToClipboard }}</div>
     </div>
   </v-snackbar>

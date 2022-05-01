@@ -224,7 +224,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-download</v-icon>
+      <v-icon>mdi-download</v-icon>
       <div class="flex-grow-1">
         匯出{{ store.otpProfiles.length }}項OTP帳號成功
       </div>
@@ -239,7 +239,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-upload</v-icon>
+      <v-icon>mdi-upload</v-icon>
       <div class="flex-grow-1">
         匯入{{ store.otpProfiles.length }}項OTP帳號成功
       </div>
@@ -254,7 +254,7 @@
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
-      <v-icon large>mdi-upload</v-icon>
+      <v-icon>mdi-upload</v-icon>
       <div class="flex-grow-1">匯入帳號失敗，請檢查檔案是否正確</div>
     </div>
   </v-snackbar>
