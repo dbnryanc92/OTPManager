@@ -44,6 +44,41 @@ import { useStore } from "./stores/store";
 const display = useDisplay();
 const store = useStore();
 store.init();
+
+// Disable auto zoom in input (iOS devices)
+const addMaximumScaleToMetaViewport = () => {
+  const el = document.querySelector("meta[name=viewport]");
+  if (!el) return;
+  let content = el.getAttribute("content");
+  if (!content) return;
+
+  let re = /maximum\-scale=[0-9\.]+/g;
+  if (re.test(content)) {
+    content = content.replace(re, "maximum-scale=1.0");
+  } else {
+    content = [content, "maximum-scale=1.0"].join(", ");
+  }
+  el.setAttribute("content", content);
+};
+
+const isIOSDevice = function () {
+  return (
+    [
+      "iPad Simulator",
+      "iPhone Simulator",
+      "iPod Simulator",
+      "iPad",
+      "iPhone",
+      "iPod",
+    ].includes(navigator.platform) ||
+    // iPad on iOS 13 detection
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  );
+};
+
+if (isIOSDevice()) {
+  addMaximumScaleToMetaViewport();
+}
 </script>
 
 <style>

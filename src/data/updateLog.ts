@@ -8,12 +8,13 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
-    v: "2.0.3-dev1",
+    v: "2.0.3",
     date: "20220501",
     details: [
       "介面：移動裝置上新增啟動篩選功能的浮動按鈕",
       "功能：移動裝置上刪除快速啟動篩選設定（改以浮動按鈕啟動）",
       "修正：電腦版上關閉篩選功能的快捷鍵固定為連按Esc鍵兩次",
+      "修正：iOS上點選輸入框時將不再自動放大頁面",
     ],
   },
   {
