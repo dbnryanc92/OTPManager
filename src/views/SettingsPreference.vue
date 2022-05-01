@@ -102,7 +102,7 @@
       </v-list-item>
 
       <!-- 帳號匯入模式 -->
-      <v-list-item lines="two" v-if="!display.xs.value">
+      <v-list-item lines="two">
         <v-list-item-header>
           <v-list-item-title>
             帳號匯入模式：{{ store.importAppend ? "加入" : "取代" }}
