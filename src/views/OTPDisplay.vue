@@ -15,7 +15,10 @@
   </v-progress-linear>
 
   <!-- Filter bar -->
-  <v-sheet v-if="showFilterBar" class="d-flex align-center">
+  <v-sheet
+    v-if="showFilterBar && store.otpProfiles.length !== 0"
+    class="d-flex align-center"
+  >
     <v-text-field
       v-model="filterBarInput"
       id="filterBarInputId"
@@ -122,6 +125,15 @@
     </tbody>
   </v-table>
 
+  <!-- Intro message if no active OTP profiles -->
+  <div
+    v-if="store.otpProfiles.length === 0"
+    class="d-flex flex-column align-center justify-center"
+    style="height: calc(100% - 12px)"
+  >
+    <Intro />
+  </div>
+
   <!-- Copy success message -->
   <v-snackbar
     v-model="showCopySuccessMsg"
@@ -157,7 +169,8 @@ import { useDisplay } from "vuetify";
 import { useStore } from "../stores/store";
 import TOTP from "../utils/totp";
 import { bnsCheckOnline } from "../utils/bnsApi";
-import BnsOnlineStatusTag from "../components/BnsOnlineStatusTag.vue";
+import Intro from "@/views/Intro.vue";
+import BnsOnlineStatusTag from "@/components/BnsOnlineStatusTag.vue";
 
 const display = useDisplay();
 const store = useStore();
@@ -210,6 +223,7 @@ const filterBarInput = ref("");
 let consecutiveEscPressed = 0;
 
 const activateFilterBar = () => {
+  if (store.otpProfiles.length === 0) return;
   showFilterBar.value = true;
   document.getElementById("filterBarInputId")?.focus();
 };

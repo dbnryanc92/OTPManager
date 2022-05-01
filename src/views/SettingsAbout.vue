@@ -2,14 +2,15 @@
   <v-card-title>
     <div>
       <div class="text-h5">關於OTP管理大師</div>
-      <div class="text-subtitle-1 d-flex align-center">
-        <span>v{{ latestVersion }} © {{ new Date().getFullYear() }}</span>
+      <div class="text-subtitle-1 d-flex flex-wrap align-center">
+        <span class="mr-2"
+          >v{{ latestVersion }} © {{ new Date().getFullYear() }}</span
+        >
         <v-btn
           href="https://github.com/dbnryanc92/OTPManager"
           target="_blank"
           append-icon="mdi-github"
           variant="outlined"
-          class="ml-2"
           style="text-transform: unset"
         >
           dbnryanc92

@@ -8,9 +8,10 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
-    v: "2.1dev1",
+    v: "2.1dev2",
     date: "20220501",
     details: [
+      "介面：新增新用戶介紹及引導訊息（沒有可用帳號時顯示）",
       "介面：新增匯出/匯入OTP記錄結果通知訊息",
       "介面：新增篩選結果為空時的提示訊息",
       "修正：刪除傳統介面中所有帳號編輯功能（請使用帳號設定頁面）",
