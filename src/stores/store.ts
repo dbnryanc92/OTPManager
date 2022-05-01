@@ -3,6 +3,7 @@ import { defineStore, storeToRefs } from "pinia";
 interface OTPProfile {
   name: string;
   secret: string;
+  bnsAccount?: true | undefined;
 }
 
 export const useStore = defineStore({
@@ -83,25 +84,54 @@ export const useStore = defineStore({
       document.body.removeChild(element);
     },
 
-    importOtpJSON(file: File) {
+    importOtpJSON(
+      file: File
+    ): Promise<{ success: boolean; profileCount: number }> {
       return new Promise((resolve, reject) => {
         const fr = new FileReader();
         fr.onload = (e) => {
           const jsonStr = e.target?.result?.toString();
+          let resultLength = 0;
           if (!jsonStr) return;
           try {
             const importJson = JSON.parse(jsonStr);
+            const parsedJson = this.parseImportJson(importJson);
             // TODO: Handle append or replace decision
-            this.otpProfiles = importJson;
+            this.otpProfiles = parsedJson;
+            resultLength = parsedJson.length;
           } catch (e) {
-            resolve(false);
+            resolve({
+              success: false,
+              profileCount: 0,
+            });
           } finally {
             this.saveOtpProfiles();
-            resolve(true);
+            resolve({
+              success: true,
+              profileCount: resultLength,
+            });
           }
         };
         fr.readAsText(file);
       });
+    },
+    parseImportJson(json: object) {
+      // Check if JSON is array
+      if (!Array.isArray(json)) {
+        throw new Error("Not an array");
+      }
+      let parsedList: Array<OTPProfile> = [];
+      json.forEach((obj) => {
+        // Check if object has name and secret
+        if (!obj.name || !obj.secret) return;
+        // Add object to list
+        parsedList.push({
+          name: obj.name,
+          secret: obj.secret,
+          bnsAccount: obj.bnsAccount === true ? true : undefined,
+        });
+      });
+      return parsedList;
     },
 
     addOtpProfile(name: string, secret: string) {

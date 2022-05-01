@@ -241,7 +241,7 @@
     <div class="d-flex align-center justify-space-between">
       <v-icon>mdi-upload</v-icon>
       <div class="flex-grow-1">
-        匯入{{ store.otpProfiles.length }}項OTP帳號成功
+        匯入{{ importOtpSuccessCount }}項OTP帳號成功
       </div>
     </div>
   </v-snackbar>
@@ -282,6 +282,7 @@ const exportOtp = function () {
 
 const importingOtp = ref(false);
 const importOtpSuccessMsg = ref(false);
+const importOtpSuccessCount = ref(0);
 const importOtpFailMsg = ref(false);
 const importOtpUploader = ref<HTMLInputElement | null>(null);
 const selectedFile = ref<File | null>(null);
@@ -303,8 +304,9 @@ const onUploaderFileChanged = async function (e: Event) {
   const file: File = (target.files as FileList)[0];
   selectedFile.value = file;
   let res = await store.importOtpJSON(selectedFile.value);
-  if (res) {
+  if (res.success) {
     importOtpSuccessMsg.value = true;
+    importOtpSuccessCount.value = res.profileCount;
   } else {
     importOtpFailMsg.value = true;
   }
