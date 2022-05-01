@@ -74,7 +74,7 @@
         </v-list-item-action>
       </v-list-item>
 
-      <v-list-subheader v-if="!display.xs.value">功能</v-list-subheader>
+      <v-list-subheader>功能</v-list-subheader>
 
       <!-- 快速啟動篩選 -->
       <v-list-item lines="two" v-if="!display.xs.value">
@@ -93,6 +93,27 @@
         <v-list-item-action>
           <v-switch
             v-model="store.useQuickFilterBar"
+            @change="store.saveSettings()"
+            color="primary"
+            hide-details
+            inset
+          ></v-switch>
+        </v-list-item-action>
+      </v-list-item>
+
+      <!-- 帳號匯入模式 -->
+      <v-list-item lines="two" v-if="!display.xs.value">
+        <v-list-item-header>
+          <v-list-item-title>
+            帳號匯入模式：{{ store.importAppend ? "加入" : "取代" }}
+          </v-list-item-title>
+          <v-list-item-subtitle class="text-caption">
+            帳號設定中，匯入JSON檔時，可以選擇加入或取代已有帳號列表
+          </v-list-item-subtitle>
+        </v-list-item-header>
+        <v-list-item-action>
+          <v-switch
+            v-model="store.importAppend"
             @change="store.saveSettings()"
             color="primary"
             hide-details

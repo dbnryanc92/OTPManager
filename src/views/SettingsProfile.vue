@@ -20,7 +20,7 @@
             :disabled="exportingOtp"
             @click="exportOtp"
           >
-            匯出(備份)
+            匯出備份
           </v-btn>
         </v-list-item-action>
         <v-list-item-action class="pb-1" start>
@@ -32,7 +32,7 @@
             :disabled="importingOtp"
             @click="importOtp"
           >
-            匯入(還原)
+            匯入({{ store.importAppend ? "加入" : "取代" }})
           </v-btn>
           <input
             ref="importOtpUploader"
@@ -311,6 +311,7 @@ const onUploaderFileChanged = async function (e: Event) {
     importOtpFailMsg.value = true;
   }
   selectedFile.value = null;
+  target.files = new DataTransfer().files;
 };
 
 // Add OTP profile

@@ -15,7 +15,8 @@ export const useStore = defineStore({
     useDarkMode: true,
     useLegacy: false,
     showSecret: false,
-    useQuickFilterBar: true,
+    useQuickFilterBar: false,
+    importAppend: true,
     useBns: false,
 
     // Settings dialog
@@ -43,6 +44,7 @@ export const useStore = defineStore({
       this.showSecret = localStorage.getItem("showSecret") === "true"; // Default false
       this.useQuickFilterBar =
         localStorage.getItem("useQuickFilterBar") === "true"; // Default false
+      this.importAppend = localStorage.getItem("importAppend") !== "false"; // Default true
       this.useBns = localStorage.getItem("useBns") === "true"; // Default false
       return;
     },
@@ -54,6 +56,7 @@ export const useStore = defineStore({
         "useQuickFilterBar",
         JSON.stringify(this.useQuickFilterBar)
       );
+      localStorage.setItem("importAppend", JSON.stringify(this.importAppend));
       localStorage.setItem("useBns", JSON.stringify(this.useBns));
       return;
     },
@@ -96,8 +99,11 @@ export const useStore = defineStore({
           try {
             const importJson = JSON.parse(jsonStr);
             const parsedJson = this.parseImportJson(importJson);
-            // TODO: Handle append or replace decision
-            this.otpProfiles = parsedJson;
+            if (this.importAppend) {
+              this.otpProfiles = [...this.otpProfiles, ...parsedJson];
+            } else {
+              this.otpProfiles = parsedJson;
+            }
             resultLength = parsedJson.length;
           } catch (e) {
             resolve({
