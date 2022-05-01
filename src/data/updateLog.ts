@@ -8,6 +8,11 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.1dev1",
+    date: "20220501",
+    details: ["介面：新增匯出/匯入OTP記錄結果通知訊息"],
+  },
+  {
     v: "2.0.3",
     date: "20220501",
     details: [

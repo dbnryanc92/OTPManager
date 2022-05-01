@@ -38,6 +38,7 @@
             ref="importOtpUploader"
             class="d-none"
             type="file"
+            accept="application/json"
             @change="onUploaderFileChanged"
           />
         </v-list-item-action>
@@ -212,6 +213,51 @@
       </v-list-item>
     </v-list>
   </v-card-content>
+
+  <!-- Export / import success / failure message -->
+  <v-snackbar
+    v-model="exportOtpSuccessMsg"
+    color="success"
+    timeout="1500"
+    absolute
+    top
+    content-class="text-center"
+  >
+    <div class="d-flex align-center justify-space-between">
+      <v-icon large>mdi-download</v-icon>
+      <div class="flex-grow-1">
+        匯出{{ store.otpProfiles.length }}項OTP帳號成功
+      </div>
+    </div>
+  </v-snackbar>
+  <v-snackbar
+    v-model="importOtpSuccessMsg"
+    color="success"
+    timeout="1500"
+    absolute
+    top
+    content-class="text-center"
+  >
+    <div class="d-flex align-center justify-space-between">
+      <v-icon large>mdi-upload</v-icon>
+      <div class="flex-grow-1">
+        匯入{{ store.otpProfiles.length }}項OTP帳號成功
+      </div>
+    </div>
+  </v-snackbar>
+  <v-snackbar
+    v-model="importOtpFailMsg"
+    color="error"
+    timeout="1500"
+    absolute
+    top
+    content-class="text-center"
+  >
+    <div class="d-flex align-center justify-space-between">
+      <v-icon large>mdi-upload</v-icon>
+      <div class="flex-grow-1">匯入帳號失敗，請檢查檔案是否正確</div>
+    </div>
+  </v-snackbar>
 </template>
 
 <script setup lang="ts">
@@ -224,22 +270,23 @@ const store = useStore();
 
 // JSON import / export
 const exportingOtp = ref(false);
+const exportOtpSuccessMsg = ref(false);
 const exportOtp = function () {
   exportingOtp.value = true;
   store.exportOtpJSON();
+  exportOtpSuccessMsg.value = true;
   setTimeout(() => {
     exportingOtp.value = false;
   }, 1000);
 };
 
 const importingOtp = ref(false);
+const importOtpSuccessMsg = ref(false);
+const importOtpFailMsg = ref(false);
 const importOtpUploader = ref<HTMLInputElement | null>(null);
 const selectedFile = ref<File | null>(null);
 const importOtp = function () {
   importingOtp.value = true;
-  setTimeout(() => {
-    importingOtp.value = false;
-  }, 1000);
   window.addEventListener(
     "focus",
     () => {
@@ -251,11 +298,17 @@ const importOtp = function () {
     importOtpUploader.value.click();
   }
 };
-const onUploaderFileChanged = function (e: Event) {
+const onUploaderFileChanged = async function (e: Event) {
   const target = e.target as HTMLInputElement;
   const file: File = (target.files as FileList)[0];
   selectedFile.value = file;
-  store.importOtpJSON(selectedFile.value);
+  let res = await store.importOtpJSON(selectedFile.value);
+  if (res) {
+    importOtpSuccessMsg.value = true;
+  } else {
+    importOtpFailMsg.value = true;
+  }
+  selectedFile.value = null;
 };
 
 // Add OTP profile

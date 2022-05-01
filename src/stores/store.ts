@@ -84,16 +84,24 @@ export const useStore = defineStore({
     },
 
     importOtpJSON(file: File) {
-      var fr = new FileReader();
-      fr.onload = (e) => {
-        if (!e.target) return;
-        const jsonStr = e.target.result;
-        if (!jsonStr) return;
-        // TODO: Handle append or replace decision
-        this.otpProfiles = JSON.parse(jsonStr.toString());
-        this.saveOtpProfiles();
-      };
-      fr.readAsText(file);
+      return new Promise((resolve, reject) => {
+        const fr = new FileReader();
+        fr.onload = (e) => {
+          const jsonStr = e.target?.result?.toString();
+          if (!jsonStr) return;
+          try {
+            const importJson = JSON.parse(jsonStr);
+            // TODO: Handle append or replace decision
+            this.otpProfiles = importJson;
+          } catch (e) {
+            resolve(false);
+          } finally {
+            this.saveOtpProfiles();
+            resolve(true);
+          }
+        };
+        fr.readAsText(file);
+      });
     },
 
     addOtpProfile(name: string, secret: string) {
