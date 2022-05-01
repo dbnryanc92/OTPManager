@@ -33,6 +33,7 @@
 
   <!-- Table to display OTPs -->
   <v-table
+    v-if="store.otpProfiles.length > 0"
     fixed-header
     density="comfortable"
     :height="showFilterBar ? 'calc(100vh - 76px)' : 'calc(100vh - 36px)'"
@@ -103,6 +104,16 @@
               {{ getOtp(item.secret, curTimegroup + 2) }}
             </div>
           </Transition>
+        </td>
+      </tr>
+
+      <!-- Empty filter result message -->
+      <tr v-if="filteredOtpProfiles.length === 0">
+        <td colspan="5" class="text-center">
+          <v-icon size="large" class="mr-2"
+            >mdi-account-question-outline</v-icon
+          >
+          <span class="text-caption">沒有符合篩選條件的OTP帳號</span>
         </td>
       </tr>
 
