@@ -125,6 +125,19 @@
       <div class="flex-grow-1">已複製到剪貼簿：{{ copiedToClipboard }}</div>
     </div>
   </v-snackbar>
+
+  <!-- FAB to open settings page (for Mobile) -->
+  <v-btn
+    v-if="display.xs.value && !showFilterBar"
+    icon="mdi-magnify"
+    color="primary"
+    position="absolute"
+    bottom="16"
+    right="64"
+    size="small"
+    @click="activateFilterBar"
+  >
+  </v-btn>
 </template>
 
 <script setup lang="ts">
@@ -184,6 +197,18 @@ const getOtp = (secret: string, timegroup: number) => {
 const showFilterBar = ref(false);
 const filterBarInput = ref("");
 let consecutiveEscPressed = 0;
+
+const activateFilterBar = () => {
+  showFilterBar.value = true;
+  document.getElementById("filterBarInputId")?.focus();
+};
+
+const resetFilterBar = function () {
+  showFilterBar.value = false;
+  filterBarInput.value = "";
+  consecutiveEscPressed = 0;
+};
+
 window.addEventListener("keydown", function (e) {
   // Not to trigger filterbar if settings is open
   if (store.showSettings) {
@@ -209,18 +234,12 @@ window.addEventListener("keydown", function (e) {
   if (e.key === "F3" || (e.ctrlKey && e.key === "f")) {
     // Disable native search
     e.preventDefault();
-    showFilterBar.value = true;
-    this.document.getElementById("filterBarInputId")?.focus();
+    activateFilterBar();
     return;
   }
   if (!store.useQuickFilterBar) return;
-  showFilterBar.value = true;
-  this.document.getElementById("filterBarInputId")?.focus();
+  activateFilterBar();
 });
-const resetFilterBar = function () {
-  showFilterBar.value = false;
-  filterBarInput.value = "";
-};
 
 const filteredOtpProfiles = computed(() => {
   if (filterBarInput.value === "") return store.otpProfiles;

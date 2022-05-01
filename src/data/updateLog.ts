@@ -8,6 +8,14 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.0.3-dev1",
+    date: "20220501",
+    details: [
+      "介面：移動裝置上新增啟動篩選功能的浮動按鈕",
+      "功能：移動裝置上刪除快速啟動篩選設定（改以浮動按鈕啟動）",
+    ],
+  },
+  {
     v: "2.0.2",
     date: "20220501",
     details: [

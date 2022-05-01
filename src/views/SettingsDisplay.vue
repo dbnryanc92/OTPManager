@@ -74,10 +74,10 @@
         </v-list-item-action>
       </v-list-item>
 
-      <v-list-subheader>功能</v-list-subheader>
+      <v-list-subheader v-if="!display.xs.value">功能</v-list-subheader>
 
       <!-- 快速啟動篩選 -->
-      <v-list-item lines="two">
+      <v-list-item lines="two" v-if="!display.xs.value">
         <v-list-item-header>
           <v-list-item-title>
             快速啟動篩選：{{
