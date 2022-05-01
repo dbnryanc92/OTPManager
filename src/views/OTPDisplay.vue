@@ -220,9 +220,9 @@ window.addEventListener("keydown", function (e) {
 
   // Handle Escape
   if (e.key === "Escape") {
-    // Hide filter bar when 3 ESC pressed
+    // Hide filter bar when Escape is pressed 2 times
     consecutiveEscPressed++;
-    if (consecutiveEscPressed >= 3) {
+    if (consecutiveEscPressed === 2) {
       resetFilterBar();
       return;
     }
