@@ -8,7 +8,7 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
-    v: "2.1dev4",
+    v: "2.1",
     date: "20220501",
     details: [
       "介面：新增新用戶介紹及引導訊息（沒有可用帳號時顯示）",

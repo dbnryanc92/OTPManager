@@ -1,19 +1,36 @@
-# OTP Manager
+<p align="center">
+  <a href="https://otp.bnshive.com" target="_blank" rel="noopener noreferrer">
+    <img width="180" src="https://otp.bnshive.com/img/pwa-192x192.png" alt="OTPManager Logo">
+  </a>
+</p>
 
-Small-size webapp to manage one-time password secret keys
+# OTP 管理大師
 
-## How to Use
+> 管理 OTP 金鑰的輕量 Web App
+>
+> Small-size webapp to manage one-time password secret keys
 
-Method 1. Open index.html with a browser
+> 方便、整齊、安全、輕量
 
-Method 2. Install the webapp to your device via any supported browser
+- 📋 點擊 OTP 可以直接複製到剪貼簿
+- ☁️ 可以安裝應用程式離線使用
+- 🔎 按 Ctrl+F 可以啟動篩選功能
 
-1. Input your OTP secret key / Import JSON file containing secret keys
+## 使用方法
+
+1. Clone the repository and run install packages via `npm install`
+2. Host the `dist` directory, visit entry point `/`
+3. Follow instructions to manually add OTP name & secret / import from a JSON file
+4. Enjoy!
 
 ## Demo Website
 
 > [https://otp.bnshive.com](https://otp.bnshive.com)
 
-## Contributors
+## Contribution
 
-* **dbnryanc92** - *Website* - [GitHub: dbnryanc92](https://github.com/dbnryanc92)
+- **dbnryanc92** - [GitHub: dbnryanc92](https://github.com/dbnryanc92)
+
+## License
+
+MIT
