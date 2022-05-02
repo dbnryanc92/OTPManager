@@ -27,6 +27,8 @@
     </v-main>
     <v-footer height="24" max-height="24" class="footer py-1">
       © dbnryanc92 {{ new Date().getFullYear() }}
+      <v-spacer />
+      v{{ latestVersion }}
     </v-footer>
   </v-app>
 </template>
@@ -41,10 +43,14 @@ import SWUpdate from "./components/SWUpdate.vue";
 import { useDisplay, useTheme } from "vuetify";
 import { useStore } from "./stores/store";
 
+import { updateLog } from "./data/updateLog";
+
 const display = useDisplay();
 const theme = useTheme();
 const store = useStore();
 store.init();
+
+const latestVersion = updateLog[0].v;
 
 // Init custom theme color
 if (store.themeColor !== "") {
