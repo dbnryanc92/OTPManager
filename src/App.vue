@@ -38,12 +38,24 @@ import Settings from "@/views/Settings.vue";
 import RemoveConfirmation from "@/components/RemoveConfirmation.vue";
 import SWUpdate from "./components/SWUpdate.vue";
 
-import { useDisplay } from "vuetify";
+import { useDisplay, useTheme } from "vuetify";
 import { useStore } from "./stores/store";
 
 const display = useDisplay();
+const theme = useTheme();
 const store = useStore();
 store.init();
+
+// Init custom theme color
+if (store.themeColor !== "") {
+  let darkTheme = theme.getTheme("dark");
+  let lightTheme = theme.getTheme("light");
+  darkTheme.colors.primary = store.themeColor;
+  lightTheme.colors.primary = store.themeColor;
+  theme.setTheme("dark", darkTheme);
+  theme.setTheme("light", lightTheme);
+  store.saveSettings();
+}
 
 // Disable auto zoom in input (iOS devices)
 const addMaximumScaleToMetaViewport = () => {

@@ -22,13 +22,85 @@
         <v-list-item-action>
           <v-switch
             v-model="store.useDarkMode"
-            @change="store.saveSettings()"
+            @change="
+              updateThemeColor();
+              store.saveSettings();
+            "
             color="primary"
             hide-details
             inset
           ></v-switch>
         </v-list-item-action>
       </v-list-item>
+
+      <!-- 主題顏色 -->
+      <v-list-item lines="two">
+        <v-list-item-header>
+          <v-list-item-title>
+            主題顏色：{{ store.themeColor ? "自訂" : "默認" }}
+          </v-list-item-title>
+          <v-list-item-subtitle class="text-caption">
+            自訂主題顏色，套用在按鈕組件、更新條組件上
+          </v-list-item-subtitle>
+        </v-list-item-header>
+        <v-list-item-action>
+          <v-btn
+            flat
+            class="themeColorBtn"
+            @click="showColorPicker = !showColorPicker"
+            min-width="122"
+          >
+            <v-sheet
+              :color="store.getThemeColor"
+              class="d-flex align-center justify-center h-100 w-100 px-4 py-1"
+            >
+              <span style="line-height: 20px">
+                {{ store.themeColor ? store.themeColor : "默認" }}
+              </span>
+            </v-sheet>
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
+      <Transition name="drawer">
+        <v-list-item v-if="showColorPicker">
+          <div class="w-100 d-flex flex-wrap justify-center align-center">
+            <v-color-picker
+              v-model="store.themeColor"
+              mode="rgb"
+              hide-inputs
+              elevation="0"
+              canvas-height="142"
+              @update:model-value="updateThemeColor"
+            ></v-color-picker>
+            <div>
+              <v-color-picker
+                v-model="store.themeColor"
+                mode="rgb"
+                hide-inputs
+                hide-canvas
+                hide-sliders
+                show-swatches
+                elevation="0"
+                swatches-max-height="142"
+                @update:model-value="updateThemeColor"
+              ></v-color-picker>
+              <v-btn
+                flat
+                text
+                class="mt-2 mb-1 ml-3 mr-7"
+                variant="outlined"
+                width="260"
+                @click="
+                  store.themeColor = '';
+                  updateThemeColor();
+                "
+              >
+                重置為默認配色
+              </v-btn>
+            </div>
+          </div>
+        </v-list-item>
+      </Transition>
 
       <!-- 傳統介面 -->
       <v-list-item lines="two">
@@ -149,11 +221,56 @@
 </template>
 
 <script setup lang="ts">
-import { useDisplay } from "vuetify";
+import { ref } from "vue";
+import { useDisplay, useTheme } from "vuetify";
 import { useStore } from "../stores/store";
 
 const display = useDisplay();
 const store = useStore();
+const theme = useTheme();
+
+const showColorPicker = ref(false);
+
+const updateThemeColor = function () {
+  if (store.themeColor.length > 7) {
+    store.themeColor = store.getThemeColor.substring(0, 7);
+  }
+  let darkTheme = theme.getTheme("dark");
+  let lightTheme = theme.getTheme("light");
+  darkTheme.colors.primary = store.getThemeColor;
+  lightTheme.colors.primary = store.getThemeColor;
+  theme.setTheme("dark", darkTheme);
+  theme.setTheme("light", lightTheme);
+  store.saveSettings();
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.themeColorBtn {
+  border: 1px solid #777;
+  border-radius: 0;
+  padding: 3px;
+}
+
+.drawer-enter-active,
+.drawer-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.drawer-enter-from {
+  opacity: 0;
+}
+.drawer-leave-to {
+  opacity: 0;
+}
+
+.v-color-picker__controls {
+  padding: 8px !important;
+}
+.v-color-picker-preview--hide-alpha {
+  margin: 0 !important;
+}
+.v-color-picker-swatches > div {
+  padding: 0 8px !important;
+}
+</style>

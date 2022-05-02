@@ -1,4 +1,4 @@
-import { defineStore, storeToRefs } from "pinia";
+import { defineStore } from "pinia";
 
 interface OTPProfile {
   name: string;
@@ -13,6 +13,7 @@ export const useStore = defineStore({
     otpProfiles: [] as Array<OTPProfile>,
     // Display settings
     useDarkMode: true,
+    themeColor: "",
     useLegacy: false,
     showSecret: false,
     useQuickFilterBar: false,
@@ -28,6 +29,15 @@ export const useStore = defineStore({
 
   getters: {
     getTheme: (state) => (state.useDarkMode ? "dark" : "light"),
+    getThemeColor: (state) => {
+      if (state.themeColor !== "") {
+        return state.themeColor;
+      }
+      if (state.useDarkMode) {
+        return "#BB86FC"; // dark theme default primary color
+      }
+      return "#6200EE"; // light theme default primary color
+    },
   },
 
   actions: {
@@ -40,6 +50,7 @@ export const useStore = defineStore({
     // Display settings
     loadSettings() {
       this.useDarkMode = localStorage.getItem("useDarkMode") !== "false"; // Default true
+      this.themeColor = localStorage.getItem("themeColor") || ""; // Default ""
       this.useLegacy = localStorage.getItem("useLegacy") === "true"; // Default false
       this.showSecret = localStorage.getItem("showSecret") === "true"; // Default false
       this.useQuickFilterBar =
@@ -50,6 +61,7 @@ export const useStore = defineStore({
     },
     saveSettings() {
       localStorage.setItem("useDarkMode", JSON.stringify(this.useDarkMode));
+      localStorage.setItem("themeColor", this.themeColor);
       localStorage.setItem("useLegacy", JSON.stringify(this.useLegacy));
       localStorage.setItem("showSecret", JSON.stringify(this.showSecret));
       localStorage.setItem(

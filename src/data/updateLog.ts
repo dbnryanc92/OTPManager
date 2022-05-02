@@ -8,6 +8,14 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.2",
+    date: "20220502",
+    details: [
+      "介面：更新條的顏色改為與主題顏色相同",
+      "功能：新增自訂主題顏色的設定",
+    ],
+  },
+  {
     v: "2.1",
     date: "20220501",
     details: [
