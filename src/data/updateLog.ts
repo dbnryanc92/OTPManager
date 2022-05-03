@@ -8,6 +8,14 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.3dev",
+    date: "20220502",
+    details: [
+      "介面：更改主題顏色的默認配色",
+      "修正：移動裝置上現在能正常更改主題顏色",
+    ],
+  },
+  {
     v: "2.2",
     date: "20220502",
     details: [

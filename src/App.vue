@@ -53,15 +53,13 @@ store.init();
 const latestVersion = updateLog[0].v;
 
 // Init custom theme color
-if (store.themeColor !== "") {
-  let darkTheme = theme.getTheme("dark");
-  let lightTheme = theme.getTheme("light");
-  darkTheme.colors.primary = store.themeColor;
-  lightTheme.colors.primary = store.themeColor;
-  theme.setTheme("dark", darkTheme);
-  theme.setTheme("light", lightTheme);
-  store.saveSettings();
-}
+let darkTheme = theme.getTheme("dark");
+let lightTheme = theme.getTheme("light");
+darkTheme.colors.primary = store.themeColor;
+lightTheme.colors.primary = store.themeColor;
+theme.setTheme("dark", darkTheme);
+theme.setTheme("light", lightTheme);
+store.saveSettings();
 
 // Disable auto zoom in input (iOS devices)
 const addMaximumScaleToMetaViewport = () => {

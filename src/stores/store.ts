@@ -13,7 +13,7 @@ export const useStore = defineStore({
     otpProfiles: [] as Array<OTPProfile>,
     // Display settings
     useDarkMode: true,
-    themeColor: "",
+    themeColor: "#FCB43A",
     useLegacy: false,
     showSecret: false,
     useQuickFilterBar: false,
@@ -29,15 +29,6 @@ export const useStore = defineStore({
 
   getters: {
     getTheme: (state) => (state.useDarkMode ? "dark" : "light"),
-    getThemeColor: (state) => {
-      if (state.themeColor !== "") {
-        return state.themeColor;
-      }
-      if (state.useDarkMode) {
-        return "#BB86FC"; // dark theme default primary color
-      }
-      return "#6200EE"; // light theme default primary color
-    },
   },
 
   actions: {
@@ -50,7 +41,7 @@ export const useStore = defineStore({
     // Display settings
     loadSettings() {
       this.useDarkMode = localStorage.getItem("useDarkMode") !== "false"; // Default true
-      this.themeColor = localStorage.getItem("themeColor") || ""; // Default ""
+      this.themeColor = localStorage.getItem("themeColor") || "#FCB43A"; // Default "#FCB43A"
       this.useLegacy = localStorage.getItem("useLegacy") === "true"; // Default false
       this.showSecret = localStorage.getItem("showSecret") === "true"; // Default false
       this.useQuickFilterBar =

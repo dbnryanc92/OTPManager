@@ -51,7 +51,7 @@
             min-width="122"
           >
             <v-sheet
-              :color="store.getThemeColor"
+              :color="store.themeColor"
               class="d-flex align-center justify-center h-100 w-100 px-4 py-1"
             >
               <span style="line-height: 20px">
@@ -66,6 +66,7 @@
           <div class="w-100 d-flex flex-wrap justify-center align-center">
             <v-color-picker
               v-model="store.themeColor"
+              v-if="!display.xs.value"
               mode="rgb"
               hide-inputs
               elevation="0"
@@ -91,7 +92,7 @@
                 variant="outlined"
                 width="260"
                 @click="
-                  store.themeColor = '';
+                  store.themeColor = '#FCB43A';
                   updateThemeColor();
                 "
               >
@@ -233,12 +234,12 @@ const showColorPicker = ref(false);
 
 const updateThemeColor = function () {
   if (store.themeColor.length > 7) {
-    store.themeColor = store.getThemeColor.substring(0, 7);
+    store.themeColor = store.themeColor.substring(0, 7);
   }
   let darkTheme = theme.getTheme("dark");
   let lightTheme = theme.getTheme("light");
-  darkTheme.colors.primary = store.getThemeColor;
-  lightTheme.colors.primary = store.getThemeColor;
+  darkTheme.colors.primary = store.themeColor;
+  lightTheme.colors.primary = store.themeColor;
   theme.setTheme("dark", darkTheme);
   theme.setTheme("light", lightTheme);
   store.saveSettings();

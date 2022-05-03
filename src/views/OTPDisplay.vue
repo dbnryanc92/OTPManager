@@ -3,7 +3,7 @@
   <v-progress-linear
     :modelValue="cdTillNextUpdate"
     :max="updateInterval"
-    :color="store.getThemeColor"
+    :color="store.themeColor"
     striped
     height="12"
   >
