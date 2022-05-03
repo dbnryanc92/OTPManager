@@ -8,12 +8,12 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
-    v: "2.3dev",
-    date: "20220502",
+    v: "2.3",
+    date: "20220503",
     details: [
+      "功能：新增匯出帳號金鑰QR Code的功能",
       "介面：更改主題顏色的默認配色",
       "介面：更改偏好設定中部份文字描述及按鈕樣式",
-      "功能：新增匯出帳號金鑰QR Code的功能",
       "修正：移動裝置上現在能正常更改主題顏色",
     ],
   },
@@ -21,8 +21,8 @@ const updateLog: UpdateLog = [
     v: "2.2",
     date: "20220502",
     details: [
-      "介面：更新條的顏色改為與主題顏色相同",
       "功能：新增自訂主題顏色的設定",
+      "介面：更新條的顏色改為與主題顏色相同",
     ],
   },
   {
