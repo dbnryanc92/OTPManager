@@ -40,13 +40,13 @@
             主題顏色：{{ store.themeColor ? "自訂" : "默認" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            自訂主題顏色，套用在按鈕組件、更新條組件上
+            自訂主題顏色，套用在按鈕、更新條等組件上
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
           <v-btn
             flat
-            class="themeColorBtn"
+            class="settingsBtn"
             @click="showColorPicker = !showColorPicker"
             min-width="122"
           >
@@ -110,7 +110,7 @@
             傳統介面：{{ store.useDarkMode ? "開啟" : "關閉" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            使用舊版OTP管理大師介面（不推薦啟用，大部份功能將失效）
+            使用舊版OTP管理大師介面（<strong>不推薦啟用</strong>，大部份功能將失效）
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
@@ -133,7 +133,7 @@
             顯示OTP金鑰：{{ store.showSecret ? "開啟" : "關閉" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            設定畫面的帳號分頁中顯示OTP金鑰
+            設定頁面中的帳號列表將顯示OTP金鑰
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
@@ -160,7 +160,7 @@
             }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            按任何鍵盤鍵時將顯示篩選欄，可以在帳號列表中篩選出符合的帳號
+            按任何鍵盤鍵時將觸發篩選欄，可以在帳號列表中進行篩選
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
@@ -181,17 +181,25 @@
             帳號匯入模式：{{ store.importAppend ? "加入" : "取代" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            帳號設定中，匯入JSON檔時，可以選擇加入或取代已有帳號列表
+            帳號設定中，匯入JSON檔時，現有帳號的處理方式
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
-          <v-switch
-            v-model="store.importAppend"
-            @change="store.saveSettings()"
-            color="primary"
-            hide-details
-            inset
-          ></v-switch>
+          <v-btn
+            flat
+            class="settingsBtn"
+            @click="store.importAppend = !store.importAppend"
+            min-width="64"
+          >
+            <v-sheet
+              :color="store.themeColor"
+              class="d-flex align-center justify-center h-100 w-100 px-4 py-1"
+            >
+              <span style="line-height: 20px">
+                {{ store.importAppend ? "加入" : "取代" }}
+              </span>
+            </v-sheet>
+          </v-btn>
         </v-list-item-action>
       </v-list-item>
 
@@ -204,7 +212,9 @@
             顯示角色上線狀態：{{ store.useBns ? "開啟" : "關閉" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
-            即時查詢角色的上線狀態，標籤須設定為角色名稱
+            即時查詢角色的上線狀態，<strong
+              >帳號標籤須設定為劍靈角色名稱</strong
+            >
           </v-list-item-subtitle>
         </v-list-item-header>
         <v-list-item-action>
@@ -247,7 +257,7 @@ const updateThemeColor = function () {
 </script>
 
 <style lang="scss">
-.themeColorBtn {
+.settingsBtn {
   border: 1px solid #777;
   border-radius: 0;
   padding: 3px;
