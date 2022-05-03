@@ -24,6 +24,8 @@
       <Settings />
       <!-- Delete confirmation dialog -->
       <RemoveConfirmation v-if="store.showRemoveConfirmation" />
+      <!-- QR Code display -->
+      <QRCodeDisplay v-if="store.showQrCode" />
     </v-main>
     <v-footer height="24" max-height="24" class="footer py-1">
       © dbnryanc92 {{ new Date().getFullYear() }}
@@ -38,6 +40,7 @@ import OTPDisplay from "@/views/OTPDisplay.vue";
 import OTPDisplayLegacy from "@/views/OTPDisplayLegacy.vue";
 import Settings from "@/views/Settings.vue";
 import RemoveConfirmation from "@/components/RemoveConfirmation.vue";
+import QRCodeDisplay from "@/components/QRCodeDisplay.vue";
 import SWUpdate from "./components/SWUpdate.vue";
 
 import { useDisplay, useTheme } from "vuetify";

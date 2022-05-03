@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { toDataURL } from "qrcode";
 
 interface OTPProfile {
   name: string;
@@ -25,6 +26,10 @@ export const useStore = defineStore({
     // Remove confirmation dialog
     showRemoveConfirmation: false,
     profileIndexToBeDeleted: -1 as number,
+    // QR code dialog
+    showQrCode: false,
+    qrCodeProfileIndex: -1 as number,
+    qrCodeDataUri: "",
   }),
 
   getters: {
@@ -164,10 +169,6 @@ export const useStore = defineStore({
       ];
       this.saveOtpProfiles();
     },
-    showOtpQrCode(index: number) {
-      // TODO: Show QR code
-      return;
-    },
 
     // Remove confirmation
     requestRemoveOtpProfile(index: number) {
@@ -177,6 +178,21 @@ export const useStore = defineStore({
     resetRemoveConfirmation() {
       this.showRemoveConfirmation = false;
       this.profileIndexToBeDeleted = -1;
+    },
+
+    // QR code
+    async showOtpQrCode(index: number) {
+      let name = this.otpProfiles[index].name;
+      let secret = this.otpProfiles[index].secret;
+      let key = `otpauth://totp/${name}?secret=${secret}`;
+      try {
+        this.qrCodeDataUri = await toDataURL(key);
+        this.qrCodeProfileIndex = index;
+        this.showQrCode = true;
+      } catch (err) {
+        console.error(err);
+      }
+      return;
     },
   },
 });

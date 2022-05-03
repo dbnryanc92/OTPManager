@@ -164,15 +164,6 @@
           </v-list-item-action>
         </div>
 
-        <!--v-list-item-action end class="ma-0">
-          <v-btn
-            variant="text"
-            icon="mdi-qrcode"
-            size="small"
-            :density="display.xs.value ? 'comfortable' : undefined"
-            @click="store.showOtpQrCode(i)"
-          ></v-btn>
-        </v-list-item-action-->
         <v-list-item-action
           end
           class="ma-0"
@@ -200,6 +191,13 @@
             :density="display.xs.value ? 'comfortable' : undefined"
             :disabled="i === store.otpProfiles.length - 1"
             @click="store.moveOtpProfile(i, 'down')"
+          ></v-btn>
+          <v-btn
+            variant="text"
+            icon="mdi-qrcode"
+            size="small"
+            :density="display.xs.value ? 'comfortable' : undefined"
+            @click="store.showOtpQrCode(i)"
           ></v-btn>
           <v-btn
             variant="text"
