@@ -8,6 +8,11 @@ interface UpdateLog extends Array<Update> {}
 
 const updateLog: UpdateLog = [
   {
+    v: "2.3.1",
+    date: "20220508",
+    details: ["修正：偏好設定中部份文字描述錯誤"],
+  },
+  {
     v: "2.3",
     date: "20220503",
     details: [

@@ -37,7 +37,7 @@
       <v-list-item lines="two">
         <v-list-item-header>
           <v-list-item-title>
-            主題顏色：{{ store.themeColor ? "自訂" : "默認" }}
+            主題顏色：{{ store.themeColor === "#FCB43A" ? "默認" : "自訂" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
             自訂主題顏色，套用在按鈕、更新條等組件上
@@ -55,7 +55,7 @@
               class="d-flex align-center justify-center h-100 w-100 px-4 py-1"
             >
               <span style="line-height: 20px">
-                {{ store.themeColor ? store.themeColor : "默認" }}
+                {{ store.themeColor === "#FCB43A" ? "默認" : store.themeColor }}
               </span>
             </v-sheet>
           </v-btn>
@@ -107,7 +107,7 @@
       <v-list-item lines="two">
         <v-list-item-header>
           <v-list-item-title>
-            傳統介面：{{ store.useDarkMode ? "開啟" : "關閉" }}
+            傳統介面：{{ store.useLegacy ? "開啟" : "關閉" }}
           </v-list-item-title>
           <v-list-item-subtitle class="text-caption">
             使用舊版OTP管理大師介面（<strong>不推薦啟用</strong>，大部份功能將失效）

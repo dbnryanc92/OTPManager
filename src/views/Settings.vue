@@ -11,7 +11,7 @@
         max-width="900"
         class="h-screen"
       >
-        <v-tabs fixed-tabs v-model="tab">
+        <v-tabs v-model="tab" fixed-tabs :color="store.themeColor">
           <v-tab value="SettingsProfile">帳號</v-tab>
           <v-tab value="SettingsPreference">偏好</v-tab>
           <v-tab value="SettingsAbout">關於</v-tab>
