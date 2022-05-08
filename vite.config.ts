@@ -58,6 +58,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  /*
   server: {
     open: false,
     port: 443,
@@ -66,6 +67,7 @@ export default defineConfig({
       cert: fs.readFileSync("./certs/server.crt"),
     },
   },
+  */
   /* remove the need to specify .vue files https://vitejs.dev/config/#resolve-extensions
   resolve: {
     extensions: [
