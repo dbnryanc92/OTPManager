@@ -27,7 +27,12 @@
       <!-- QR Code display -->
       <QRCodeDisplay v-if="store.showQrCode" />
     </v-main>
-    <v-footer height="24" max-height="24" class="footer py-1">
+    <v-footer
+      height="24"
+      max-height="24"
+      class="footer py-1"
+      :style="display.xs.value ? 'z-index: 2002' : ''"
+    >
       © dbnryanc92 {{ new Date().getFullYear() }}
       <v-spacer />
       v{{ latestVersion }}
@@ -133,6 +138,5 @@ html {
 .footer {
   font-size: 13px;
   line-height: 16px;
-  z-index: 2002;
 }
 </style>

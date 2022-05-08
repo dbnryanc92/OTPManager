@@ -2,6 +2,7 @@
   <v-dialog
     v-model="store.showRemoveConfirmation"
     :retain-focus="false"
+    :style="display.xs.value ? 'z-index: 2003' : ''"
     persistent
   >
     <template v-slot:default="{ isActive }">
@@ -42,8 +43,10 @@
 </template>
 
 <script setup lang="ts">
+import { useDisplay } from "vuetify";
 import { useStore } from "../stores/store";
 
+const display = useDisplay();
 const store = useStore();
 </script>
 

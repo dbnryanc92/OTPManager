@@ -1,5 +1,9 @@
 <template>
-  <v-dialog v-model="store.showQrCode" :retain-focus="false">
+  <v-dialog
+    v-model="store.showQrCode"
+    :retain-focus="false"
+    :style="display.xs.value ? 'z-index: 2003' : ''"
+  >
     <template v-slot:default="{ isActive }">
       <v-card>
         <v-card-title class="pa-0 pl-4" primary-title>
@@ -17,8 +21,10 @@
 </template>
 
 <script setup lang="ts">
+import { useDisplay } from "vuetify";
 import { useStore } from "../stores/store";
 
+const display = useDisplay();
 const store = useStore();
 </script>
 
