@@ -138,7 +138,8 @@
     color="success"
     timeout="1000"
     absolute
-    top
+    :top="!display.xs.value"
+    :bottom="display.xs.value"
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">

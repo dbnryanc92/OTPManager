@@ -218,7 +218,8 @@
     color="success"
     timeout="1500"
     absolute
-    top
+    :top="!display.xs.value"
+    :bottom="display.xs.value"
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
@@ -233,7 +234,8 @@
     color="success"
     timeout="1500"
     absolute
-    top
+    :top="!display.xs.value"
+    :bottom="display.xs.value"
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
@@ -248,7 +250,8 @@
     color="error"
     timeout="1500"
     absolute
-    top
+    :top="!display.xs.value"
+    :bottom="display.xs.value"
     content-class="text-center"
   >
     <div class="d-flex align-center justify-space-between">
