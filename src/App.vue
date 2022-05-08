@@ -55,6 +55,14 @@ store.init();
 
 const latestVersion = updateLog[0].v;
 
+// Detech & watch for app height
+const setAppHeight = () => {
+  const doc = document.documentElement;
+  doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+};
+window.addEventListener("resize", setAppHeight);
+setAppHeight();
+
 // Init custom theme color
 let darkTheme = theme.getTheme("dark");
 let lightTheme = theme.getTheme("light");
@@ -100,13 +108,27 @@ if (isIOSDevice()) {
 }
 </script>
 
-<style>
+<style lang="scss">
+:root {
+  --doc-height: 100%;
+}
+
 html {
   overflow-y: hidden !important;
+}
+
+.v-application__wrap {
+  min-height: var(--doc-height) !important;
+}
+
+.v-main__wrap {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer {
   font-size: 13px;
   line-height: 16px;
+  z-index: 2002;
 }
 </style>

@@ -39,7 +39,7 @@
     v-if="store.otpProfiles.length > 0"
     fixed-header
     density="comfortable"
-    :height="showFilterBar ? 'calc(100vh - 76px)' : 'calc(100vh - 36px)'"
+    class="flex-grow-1"
   >
     <thead>
       <tr>
@@ -128,8 +128,7 @@
   <!-- Intro message if no active OTP profiles -->
   <div
     v-if="store.otpProfiles.length === 0"
-    class="d-flex flex-column align-center justify-center"
-    style="height: calc(100% - 12px)"
+    class="d-flex flex-column align-center justify-center flex-grow-1"
   >
     <Intro />
   </div>

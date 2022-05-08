@@ -97,7 +97,7 @@ const copyToClipboard = (otp: string) => {
   background-color: #1e1e1e;
   color: rgba(255, 255, 255, 0.87);
   line-height: initial;
-  min-height: calc(100vh - 24px);
+  flex-grow: 1;
   box-sizing: border-box;
 }
 .header {

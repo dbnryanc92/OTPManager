@@ -2,6 +2,7 @@
   <v-dialog
     v-model="store.showSettings"
     :fullscreen="display.xs.value"
+    :content-class="{ 'pb-6': display.xs.value }"
     transition="dialog-bottom-transition"
   >
     <template v-slot:default="{ isActive }">
