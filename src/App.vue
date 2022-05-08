@@ -126,6 +126,10 @@ html {
   flex-direction: column;
 }
 
+.v-overlay__content {
+  margin: 0 !important;
+}
+
 .footer {
   font-size: 13px;
   line-height: 16px;
