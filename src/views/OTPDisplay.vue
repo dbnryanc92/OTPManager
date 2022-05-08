@@ -15,24 +15,23 @@
   </v-progress-linear>
 
   <!-- Filter bar -->
-  <v-sheet
-    v-if="showFilterBar && store.otpProfiles.length !== 0"
-    class="d-flex align-center"
-  >
-    <v-text-field
-      v-model="filterBarInput"
-      id="filterBarInputId"
-      hide-details
-      single-line
-      variant="plain"
-      density="compact"
-      prepend-icon="mdi-magnify"
-      class="ml-2"
-    ></v-text-field>
-    <v-btn icon flat @click="resetFilterBar" density="compact">
-      <v-icon>mdi-close</v-icon>
-    </v-btn>
-  </v-sheet>
+  <div v-show="showFilterBar && store.otpProfiles.length !== 0">
+    <v-sheet class="d-flex align-center">
+      <v-text-field
+        v-model="filterBarInput"
+        id="filterBarInputId"
+        hide-details
+        single-line
+        variant="plain"
+        density="compact"
+        prepend-icon="mdi-magnify"
+        class="ml-2"
+      ></v-text-field>
+      <v-btn icon flat @click="resetFilterBar" density="comfortable">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-sheet>
+  </div>
 
   <!-- Table to display OTPs -->
   <v-table
@@ -150,7 +149,7 @@
 
   <!-- FAB to open settings page (for Mobile) -->
   <v-btn
-    v-if="display.xs.value && !showFilterBar"
+    v-if="display.xs.value && !showFilterBar && store.otpProfiles.length !== 0"
     icon="mdi-magnify"
     color="primary"
     position="absolute"
@@ -223,8 +222,25 @@ let consecutiveEscPressed = 0;
 
 const activateFilterBar = () => {
   if (store.otpProfiles.length === 0) return;
+  if (showFilterBar.value) return;
   showFilterBar.value = true;
-  document.getElementById("filterBarInputId")?.focus();
+
+  let filterBarInputEl = document.getElementById("filterBarInputId");
+  if (!filterBarInputEl) return;
+  var __tempEl__ = document.createElement("input");
+  __tempEl__.style.position = "absolute";
+  __tempEl__.style.height = "0";
+  __tempEl__.style.opacity = "0";
+  document.body.appendChild(__tempEl__);
+  __tempEl__.focus();
+
+  // The keyboard is open. Now do a delayed focus on the target element
+  setTimeout(function () {
+    if (!filterBarInputEl) return;
+    filterBarInputEl.focus();
+    filterBarInputEl.click();
+    document.body.removeChild(__tempEl__);
+  }, 1);
 };
 
 const resetFilterBar = function () {
