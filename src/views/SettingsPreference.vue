@@ -6,7 +6,7 @@
     </div>
   </v-card-title>
   <v-card-content class="pa-0">
-    <v-list density="comfortable">
+    <v-list density="comfortable" style="background: unset">
       <v-list-subheader>顯示</v-list-subheader>
 
       <!-- 黑夜模式 -->

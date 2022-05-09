@@ -2,8 +2,7 @@
   <v-dialog
     v-model="store.showSettings"
     :fullscreen="display.xs.value"
-    :content-class="{ 'pb-6': display.xs.value }"
-    transition="dialog-bottom-transition"
+    transition="slide-y-reverse-transition"
   >
     <template v-slot:default="{ isActive }">
       <v-card
@@ -25,6 +24,7 @@
           v-model="tab"
           class="overflow-y-auto h-100"
           id="settingsWindow"
+          style="background: rgb(var(--v-theme-surface))"
         >
           <v-window-item value="SettingsProfile" class="h-100">
             <SettingsProfile />

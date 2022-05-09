@@ -2,7 +2,6 @@
   <v-dialog
     v-model="store.showRemoveConfirmation"
     :retain-focus="false"
-    :style="display.xs.value ? 'z-index: 2003' : ''"
     persistent
   >
     <template v-slot:default="{ isActive }">

@@ -1,9 +1,5 @@
 <template>
-  <v-dialog
-    v-model="store.showQrCode"
-    :retain-focus="false"
-    :style="display.xs.value ? 'z-index: 2003' : ''"
-  >
+  <v-dialog v-model="store.showQrCode" :retain-focus="false">
     <template v-slot:default="{ isActive }">
       <v-card>
         <v-card-title class="pa-0 pl-4" primary-title>

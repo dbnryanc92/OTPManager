@@ -38,7 +38,7 @@
   </v-card-title>
   <v-card-content class="pa-0">
     <!-- 簡介 -->
-    <v-list density="comfortable">
+    <v-list density="comfortable" style="background: unset">
       <v-list-subheader>簡介</v-list-subheader>
       <v-list-item class="d-flex flex-column align-start">
         <div class="d-flex align-center text-subtitle-2">
@@ -56,7 +56,7 @@
       </v-list-item>
     </v-list>
     <!-- 更新日誌 -->
-    <v-list density="comfortable">
+    <v-list density="comfortable" style="background: unset">
       <v-list-subheader>更新日誌</v-list-subheader>
       <v-list-item v-for="(update, i) in updateLog" :key="i">
         <div>

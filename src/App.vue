@@ -27,12 +27,7 @@
       <!-- QR Code display -->
       <QRCodeDisplay v-if="store.showQrCode" />
     </v-main>
-    <v-footer
-      height="24"
-      max-height="24"
-      class="footer py-1"
-      :style="display.xs.value ? 'z-index: 2002' : ''"
-    >
+    <v-footer height="24" max-height="24" class="footer py-1">
       © dbnryanc92 {{ new Date().getFullYear() }}
       <v-spacer />
       v{{ latestVersion }}
@@ -120,6 +115,13 @@ if (isIOSDevice()) {
 
 html {
   overflow-y: hidden !important;
+}
+
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .v-application__wrap {

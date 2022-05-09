@@ -9,7 +9,7 @@
     </div>
   </v-card-title>
   <v-card-content class="pa-0">
-    <v-list density="comfortable">
+    <v-list density="comfortable" style="background: unset">
       <v-list-item class="flex-wrap">
         <v-list-item-action class="pb-1" start>
           <v-btn
