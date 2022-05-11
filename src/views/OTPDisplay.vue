@@ -38,12 +38,22 @@
     v-if="store.otpProfiles.length > 0"
     fixed-header
     density="comfortable"
-    class="flex-grow-1"
+    class="flex-grow-1 overflow-y-auto"
+    style="height: 1px"
   >
     <thead>
       <tr>
-        <th class="text-subtitle-1 text-center" style="z-index: 1">標籤</th>
-        <th class="text-subtitle-1 text-center" style="z-index: 1" colspan="4">
+        <th
+          class="text-subtitle-1 text-center"
+          style="z-index: 1; background: unset"
+        >
+          標籤
+        </th>
+        <th
+          class="text-subtitle-1 text-center"
+          style="z-index: 1; background: unset"
+          colspan="4"
+        >
           OTP
         </th>
       </tr>
@@ -304,7 +314,10 @@ const copyToClipboard = (otp: string) => {
 };
 
 // Bns Online Status
-const bnsOnlineStatus = ref({});
+interface BnsOnlineStatus {
+  [key: string]: boolean;
+}
+const bnsOnlineStatus = ref({} as BnsOnlineStatus);
 const bnsOnlineUpdatedTimegroup = ref(0);
 const updateBnsOnlineStatus = async () => {
   bnsOnlineUpdatedTimegroup.value = curTimegroup.value;
