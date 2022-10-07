@@ -1,4 +1,4 @@
-const api = "https://dev.bnshive.com/api/checkOnline";
+const api = "https://archive.bnshive.com/api/checkOnline";
 
 const bnsCheckOnline = async function (chars: Array<string>) {
   const res = await fetch(api, {
